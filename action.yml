@@ -2,31 +2,31 @@ name: 'Puah Image to ECR'
 description: 'todo'
 author: 'Keboola'
 inputs: 
-  KBC_DEVELOPERPORTAL_VENDOR:
+  vendor:
     description: 'Vendor'
-    default: 'world'
-  KBC_DEVELOPERPORTAL_APP:
+    required: true
+  app_id:
     description: 'App'
-    default: 'world'
-  KBC_DEVELOPERPORTAL_USERNAME:
+    required: true
+  username:
     description: 'Username'
-    default: 'world'
-  KBC_DEVELOPERPORTAL_PASSWORD:
+    required: true
+  password:
     description: 'Password'
-    default: 'world'
-  REPOSITORY_TAG:
+    required: true
+  tag:
     description: 'Tag'
-    default: 'world'
-  APP_IMAGE:
+    required: true
+  source_image:
     description: 'Image'
-    default: 'world'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.KBC_DEVELOPERPORTAL_VENDOR }}
-    - ${{ inputs.KBC_DEVELOPERPORTAL_APP }}
-    - ${{ inputs.KBC_DEVELOPERPORTAL_USERNAME }}
-    - ${{ inputs.KBC_DEVELOPERPORTAL_PASSWORD }}
-    - ${{ inputs.REPOSITORY_TAG }}
-    - ${{ inputs.APP_IMAGE }}
+    - ${{ inputs.vendor }}
+    - ${{ inputs.app_id }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.source_image }}
