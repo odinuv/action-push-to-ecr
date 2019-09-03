@@ -1,12 +1,32 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: 'Puah Image to ECR'
+description: 'todo'
+author: 'Keboola'
 inputs: 
-  myInput:
-    description: 'Input to use'
+  KBC_DEVELOPERPORTAL_VENDOR:
+    description: 'Vendor'
+    default: 'world'
+  KBC_DEVELOPERPORTAL_APP:
+    description: 'App'
+    default: 'world'
+  KBC_DEVELOPERPORTAL_USERNAME:
+    description: 'Username'
+    default: 'world'
+  KBC_DEVELOPERPORTAL_PASSWORD:
+    description: 'Password'
+    default: 'world'
+  REPOSITORY_TAG:
+    description: 'Tag'
+    default: 'world'
+  APP_IMAGE:
+    description: 'Image'
     default: 'world'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.myInput }}
+    - ${{ inputs.KBC_DEVELOPERPORTAL_VENDOR }}
+    - ${{ inputs.KBC_DEVELOPERPORTAL_APP }}
+    - ${{ inputs.KBC_DEVELOPERPORTAL_USERNAME }}
+    - ${{ inputs.KBC_DEVELOPERPORTAL_PASSWORD }}
+    - ${{ inputs.REPOSITORY_TAG }}
+    - ${{ inputs.APP_IMAGE }}
