@@ -16,7 +16,7 @@ PUSH_LATEST=$7
 
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 
-export TARGET_TAG=`echo ${TAG} | grep -Po '^(v?[0-9]+.[0-9]+.[0-9]+)'$`
+export TARGET_TAG=`echo ${TAG} | /usr/bin/pcregrep -o '^(v?[0-9]+.[0-9]+.[0-9]+)'$`
 if [ $TARGET_TAG -eq '' ]
 then 
 	TARGET_TAG=$TAG
@@ -36,7 +36,7 @@ eval $(docker run --rm \
 docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:${TAG}
 docker push ${REPOSITORY}:${TAG}
 
-if [ $PUSH_LATEST -ne '' ]
+if [ $PUSH_LATEST -eq 1 ]
 then
 	echo "Pushing to latest tag"
 	docker tag ${APP_IMAGE}:latest ${REPOSITORY}:latest
