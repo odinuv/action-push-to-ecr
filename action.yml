@@ -20,6 +20,10 @@ inputs:
   source_image:
     description: 'Image'
     required: true
+  push_latest:
+    description: 'Image'
+    required: false
+    default: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -30,3 +34,4 @@ runs:
     - ${{ inputs.password }}
     - ${{ inputs.tag }}
     - ${{ inputs.source_image }}
+    - ${{ inputs.push_latest }}
