@@ -23,7 +23,7 @@ inputs:
   push_latest:
     description: 'Image'
     required: false
-    default: false
+    default: 0
 runs:
   using: 'docker'
   image: 'Dockerfile'
