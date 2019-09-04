@@ -1,27 +1,27 @@
 name: 'Puah Image to ECR'
-description: 'todo'
+description: 'Push a local image to the ECR registry provided by the Developer Portal'
 author: 'Keboola'
 inputs: 
   vendor:
-    description: 'Vendor'
+    description: 'Application vendor (e.g. keboola)'
     required: true
   app_id:
-    description: 'App'
+    description: 'Application ID (e.g. keboola.ex-db-mysql)'
     required: true
   username:
-    description: 'Username'
+    description: 'Developer portal Service user name (e.g. keboola+my_app_deploy_user'
     required: true
   password:
-    description: 'Password'
+    description: 'Developer portal Service user password'
     required: true
   tag:
-    description: 'Tag'
+    description: 'GitHub tag reference (e.g. refs/tags/1.0.0)'
     required: true
   source_image:
-    description: 'Image'
+    description: 'Name of the image to push (e.g. my-application)'
     required: true
   push_latest:
-    description: 'Image'
+    description: 'If true, also push to the "latest" tag'
     required: false
     default: false
 runs:

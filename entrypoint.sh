@@ -21,10 +21,9 @@ if [ "$TARGET_TAG" = "" ]
 then 
 	TARGET_TAG=$TAG
 fi
-echo $TARGET_TAG
 
 docker images
-echo "Pushing image '${SOURCE_IMAGE}' with tag '${TAG}' (latest '${PUSH_LATEST}') to application '${APP_ID}' of vendor '${VENDOR}'. Using service account '${KBC_DEVELOPERPORTAL_USERNAME}'."
+echo "Pushing image '${SOURCE_IMAGE}' with tag '${TARGET_TAG}' (latest '${PUSH_LATEST}') to application '${APP_ID}' of vendor '${VENDOR}'. Using service account '${KBC_DEVELOPERPORTAL_USERNAME}'."
 
 # login to the repository
 export REPOSITORY=`docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD quay.io/keboola/developer-portal-cli-v2:latest ecr:get-repository ${VENDOR} ${APP_ID}`
@@ -34,8 +33,8 @@ eval $(docker run --rm \
   quay.io/keboola/developer-portal-cli-v2:latest ecr:get-login ${VENDOR} ${APP_ID})
 
 # tag and push
-docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:${TAG}
-docker push ${REPOSITORY}:${TAG}
+docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:${TARGET_TAG}
+docker push ${REPOSITORY}:${TARGET_TAG}
 
 if [ "$PUSH_LATEST" = "true" ]
 then
