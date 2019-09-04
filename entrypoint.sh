@@ -39,6 +39,6 @@ docker push ${REPOSITORY}:${TARGET_TAG}
 if [ "$PUSH_LATEST" = "true" ]
 then
 	echo "Pushing to latest tag"
-	docker tag ${APP_IMAGE}:latest ${REPOSITORY}:latest
+	docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:latest
 	docker push ${REPOSITORY}:latest
 fi
