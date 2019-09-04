@@ -17,9 +17,8 @@ PUSH_LATEST=$7
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 
 echo "B"
-echo $TAG | /usr/bin/pcregrep -o '^(v?[0-9]+.[0-9]+.[0-9]+)'\$
 echo "A"
-export TARGET_TAG=`echo $TAG | /usr/bin/pcregrep -o '^(v?[0-9]+.[0-9]+.[0-9]+)'\$`
+export TARGET_TAG=`echo $TAG | /usr/bin/pcregrep -o '^(v?[0-9]+.[0-9]+.[0-9]+)$'`
 echo "TT: $TARGET_TAG"
 if [ $TARGET_TAG -eq "" ]
 then 
