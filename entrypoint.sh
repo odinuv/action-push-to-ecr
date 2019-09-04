@@ -16,11 +16,12 @@ PUSH_LATEST=$7
 
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 
-export TARGET_TAG=`echo $TAG | /usr/bin/pcregrep -o '^(v?[0-9]+.[0-9]+.[0-9]+)\$'`
-if [ $TARGET_TAG -eq "" ]
+export TARGET_TAG=`echo $TAG | /usr/bin/pcregrep -o1 '^refs/tags/(v?[0-9]+.[0-9]+.[0-9]+)$'`
+if [ "$TARGET_TAG" = "" ]
 then 
 	TARGET_TAG=$TAG
 fi
+echo $TARGET_TAG
 
 docker images
 echo "Pushing image '${SOURCE_IMAGE}' with tag '${TAG}' (latest '${PUSH_LATEST}') to application '${APP_ID}' of vendor '${VENDOR}'. Using service account '${KBC_DEVELOPERPORTAL_USERNAME}'."
@@ -36,7 +37,7 @@ eval $(docker run --rm \
 docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:${TAG}
 docker push ${REPOSITORY}:${TAG}
 
-if [ $PUSH_LATEST -eq "true" ]
+if [ "$PUSH_LATEST" = "true" ]
 then
 	echo "Pushing to latest tag"
 	docker tag ${APP_IMAGE}:latest ${REPOSITORY}:latest
