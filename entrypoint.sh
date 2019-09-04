@@ -8,11 +8,11 @@ then
 fi 
 VENDOR=$1
 APP_ID=$2
-KBC_DEVELOPERPORTAL_USERNAME=$3
-KBC_DEVELOPERPORTAL_PASSWORD=$4
+export KBC_DEVELOPERPORTAL_USERNAME=$3
+export KBC_DEVELOPERPORTAL_PASSWORD=$4
 TAG=$5
 SOURCE_IMAGE=$6
-echo "Pushing image ${SOURCE_IMAGE} with tag ${TAG} to application ${APP_ID} of vendor ${VENDOR}. Using service account ${KBC_DEVELOPERPORTAL_USERNAME}."
+echo "Pushing image '${SOURCE_IMAGE}' with tag '${TAG}' to application '${APP_ID}' of vendor '${VENDOR}'. Using service account '${KBC_DEVELOPERPORTAL_USERNAME}'."
 
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 docker images
