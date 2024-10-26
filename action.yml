@@ -24,6 +24,10 @@ inputs:
     description: 'If true, also push to the "latest" tag'
     required: false
     default: false
+  image_name_suffix:
+    description: 'Image name suffix'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -35,3 +39,4 @@ runs:
     - ${{ inputs.tag }}
     - ${{ inputs.source_image }}
     - ${{ inputs.push_latest }}
+    - ${{ inputs.image_name_suffix }}

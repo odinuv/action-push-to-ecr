@@ -13,6 +13,7 @@ export KBC_DEVELOPERPORTAL_PASSWORD=$4
 TAG=$5
 SOURCE_IMAGE=$6
 PUSH_LATEST=$7
+IMAGE_NAME_SUFFIX=$8
 
 docker pull quay.io/keboola/developer-portal-cli-v2:latest
 
@@ -33,12 +34,12 @@ eval $(docker run --rm \
   quay.io/keboola/developer-portal-cli-v2:latest ecr:get-login ${VENDOR} ${APP_ID})
 
 # tag and push
-docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:${TARGET_TAG}
-docker push ${REPOSITORY}:${TARGET_TAG}
+docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}${IMAGE_NAME_SUFFIX}:${TARGET_TAG}
+docker push ${REPOSITORY}${IMAGE_NAME_SUFFIX}:${TARGET_TAG}
 
 if [ "$PUSH_LATEST" = "true" ]
 then
 	echo "Pushing to latest tag"
-	docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}:latest
-	docker push ${REPOSITORY}:latest
+	docker tag ${SOURCE_IMAGE}:latest ${REPOSITORY}${IMAGE_NAME_SUFFIX}:latest
+	docker push ${REPOSITORY}${IMAGE_NAME_SUFFIX}:latest
 fi
